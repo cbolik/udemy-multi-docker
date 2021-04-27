@@ -9,10 +9,10 @@ script:
   - docker run -e CI=true cbolik/udemy-multi-docker-test npm test
 
 after_success:
-  - docker build cbolik/udemy-multi-client ./client
-  - docker build cbolik/udemy-multi-nginx ./nginx
-  - docker build cbolik/udemy-multi-server ./server
-  - docker build cbolik/udemy-multi-worker ./worker
+  - docker build -t cbolik/udemy-multi-client ./client
+  - docker build -t cbolik/udemy-multi-nginx ./nginx
+  - docker build -t cbolik/udemy-multi-server ./server
+  - docker build -t cbolik/udemy-multi-worker ./worker
   # Log into Docker Hub and push images
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push cbolik/udemy-multi-client
